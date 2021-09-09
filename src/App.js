@@ -6,6 +6,7 @@ import ServicePage from './ServicePage/ServicePage';
 import SignupForm from './SignupForm/SignupForm';
 import AdminLogin from './AdminLogin/AdminLogin';
 import AdminHome from './AdminHome/AdminHome';
+import ManoboContext from './ManoboContext';
 import { dummyStore } from './dummy-store';
 
 class App extends React.Component {
@@ -24,10 +25,6 @@ class App extends React.Component {
 
   renderMainRoutes() {
 
-    const { clients } = this.state;
-
-    console.log(clients)
-    
     return (
       <>
         <Route 
@@ -62,9 +59,6 @@ class App extends React.Component {
           path='/admin-home'
           component={AdminHome}
         />
-
-        <AdminHome clients={clients}/>
-
       </>
     )
     
@@ -72,19 +66,26 @@ class App extends React.Component {
   }
   
   render() {
+    
+    const contextValue = {
+      clients: this.state.clients
+    }
+
     return (
-      <div className='App'>
-        <nav className='App__nav'><h2>Nav bar</h2></nav>
-        <header className='App__header'>
-          <h1>
-            <Link className='App__header_link' to='/homepage'>Manobo App</Link>
-          </h1>
-        </header>
-        <main className='App__main'>
-          {this.renderMainRoutes()}
-        </main>
-        <footer className='App_footer'><h2>Footer</h2></footer>
-      </div>
+      <main className='App'>
+        <ManoboContext.Provider value={contextValue}>
+          <nav className='App__nav'><h2>Nav bar</h2></nav>
+          <header className='App__header'>
+            <h1>
+              <Link className='App__header_link' to='/homepage'>Manobo App</Link>
+            </h1>
+          </header>
+          <main className='App__main'>
+            {this.renderMainRoutes()}
+          </main>
+          <footer className='App_footer'><h2>Footer</h2></footer>
+        </ManoboContext.Provider>
+      </main>
     );
   }
 }

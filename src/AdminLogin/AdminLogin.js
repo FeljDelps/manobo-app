@@ -68,9 +68,10 @@ class AdminLogin extends React.Component {
             repeatPassword: this.state.repeatAdminPassword.value
         }
 
+        this.props.history.push('/admin-home')
+
         console.log(admin)
 
-        this.props.history.push('/admin-home')
     }
     
     render() {

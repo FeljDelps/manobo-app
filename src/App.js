@@ -5,6 +5,7 @@ import HomePage from './HomePage/HomePage';
 import ServicePage from './ServicePage/ServicePage';
 import SignupForm from './SignupForm/SignupForm';
 import AdminLogin from './AdminLogin/AdminLogin';
+import AdminHome from './AdminHome/AdminHome';
 import dummyStore from './dummy-store';
 
 class App extends React.Component {
@@ -54,6 +55,10 @@ class App extends React.Component {
           path='/admin-login'
           component={AdminLogin}
         />
+
+        <AdminHome clients={clients}/>
+
+
 
       </>
     )

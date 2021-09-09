@@ -5,11 +5,27 @@ import HomePage from './HomePage/HomePage';
 import ServicePage from './ServicePage/ServicePage';
 import SignupForm from './SignupForm/SignupForm';
 import AdminLogin from './AdminLogin/AdminLogin';
+import dummyStore from './dummy-store';
 
 class App extends React.Component {
   
+  constructor(props) {
+    super(props)
+    this.state = {
+      clients: []
+    }
+  }
   
+  componentDidMount() {
+    //Fake API call 
+    setTimeout(() => this.setState(dummyStore))
+  }
+
   renderMainRoutes() {
+
+    const { clients } = this.state;
+
+    console.log(clients)
     
     return (
       <>

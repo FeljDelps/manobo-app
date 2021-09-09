@@ -70,6 +70,7 @@ class AdminLogin extends React.Component {
 
         console.log(admin)
 
+        this.props.history.push('/admin-home')
     }
     
     render() {

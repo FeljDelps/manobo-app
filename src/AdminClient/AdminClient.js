@@ -15,4 +15,8 @@ class AdminClient extends React.Component {
     };
 }
 
+AdminClient.defaultProps = {
+    client: {}
+}
+
 export default AdminClient;

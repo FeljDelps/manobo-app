@@ -56,8 +56,12 @@ class App extends React.Component {
           component={AdminLogin}
         />
 
-        <AdminHome clients={clients}/>
+        { /*<AdminHome clients={clients}/> */}
 
+        <Route 
+          path='/admin-home'
+          component={AdminHome}
+        />
 
 
       </>

@@ -6,16 +6,16 @@ import ServicePage from './ServicePage/ServicePage';
 import SignupForm from './SignupForm/SignupForm';
 import AdminLogin from './AdminLogin/AdminLogin';
 import AdminHome from './AdminHome/AdminHome';
-import dummyStore from './dummy-store';
+import { dummyStore } from './dummy-store';
 
 class App extends React.Component {
-  
   constructor(props) {
     super(props)
     this.state = {
       clients: []
     }
   }
+  
   
   componentDidMount() {
     //Fake API call 
@@ -63,6 +63,7 @@ class App extends React.Component {
           component={AdminHome}
         />
 
+        <AdminHome clients={clients}/>
 
       </>
     )

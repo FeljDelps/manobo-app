@@ -23,6 +23,12 @@ class App extends React.Component {
     setTimeout(() => this.setState(dummyStore))
   }
 
+  addClient = client => {
+    this.setState({
+      clients: [...this.state.clients, client]
+    })
+  }
+  
   renderMainRoutes() {
 
     return (
@@ -53,8 +59,6 @@ class App extends React.Component {
           component={AdminLogin}
         />
 
-        { /*<AdminHome clients={clients}/> */}
-
         <Route 
           path='/admin-home'
           component={AdminHome}
@@ -68,7 +72,8 @@ class App extends React.Component {
   render() {
     
     const contextValue = {
-      clients: this.state.clients
+      clients: this.state.clients,
+      addClient: this.addClient
     }
 
     return (

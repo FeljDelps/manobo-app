@@ -1,10 +1,13 @@
 import React from 'react';
 import ValidationError from '../ValidationError';
+import ManoboContext from '../ManoboContext';
 
 
 //validation error for email address not working
 
 class SignupForm extends React.Component {
+
+    static contextType = ManoboContext;
 
     constructor(props) {
         super(props);
@@ -77,11 +80,22 @@ class SignupForm extends React.Component {
         event.preventDefault();
 
         const newUser = {
+            id:9,
             name: this.state.name.value,
             phone: this.state.phone.value,
             email: this.state.email.value,
             comment: this.state.comment.value
         }
+
+        this.setState({
+            name: {value: '', touched: false},
+            phone: {value: '', touched: false},
+            email: {value: '', touched: false},
+            comment: {value: '', touched: false}
+        })
+        this.context.addClient(newUser);
+        this.props.history.push('/admin-home')
+
 
         console.log(newUser);
 

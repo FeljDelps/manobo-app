@@ -8,7 +8,7 @@ class AdminHome extends React.Component {
 
     render() {
         
-        const { clients } = this.context;
+        const { clients=[] } = this.context;
         
         const clientList = clients.map(client => 
             <AdminClient 

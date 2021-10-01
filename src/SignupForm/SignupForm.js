@@ -80,7 +80,6 @@ class SignupForm extends React.Component {
         event.preventDefault();
 
         const newUser = {
-            id:9,
             name: this.state.name.value,
             phone: this.state.phone.value,
             email: this.state.email.value,

@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      clients: []
+      leads: []
     }
   }
   
@@ -24,9 +24,9 @@ class App extends React.Component {
     setTimeout(() => this.setState(dummyStore))
   }
 
-  addClient = client => {
+  addLead = lead => {
     this.setState({
-      clients: [...this.state.clients, client]
+      leads: [...this.state.leads, lead]
     })
   }
   
@@ -73,8 +73,8 @@ class App extends React.Component {
   render() {
     
     const contextValue = {
-      clients: this.state.clients,
-      addClient: this.addClient
+      leads: this.state.leads,
+      addLead: this.addLead
     }
 
     return (

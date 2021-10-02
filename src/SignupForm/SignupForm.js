@@ -92,7 +92,7 @@ class SignupForm extends React.Component {
             email: {value: '', touched: false},
             comment: {value: '', touched: false}
         })
-        this.context.addClient(newUser);
+        this.context.addLead(newUser);
         this.props.history.push('/admin-home')
 
 

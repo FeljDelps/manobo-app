@@ -8,18 +8,18 @@ class AdminHome extends React.Component {
 
     render() {
         
-        const { clients=[] } = this.context;
+        const { leads=[] } = this.context;
         
-        const clientList = clients.map(client => 
+        const leadList = leads.map(lead => 
             <AdminClient 
-                key={client.id}
-                id={client.id}
-                client={client}
+                key={lead.id}
+                id={lead.id}
+                lead={lead}
             />)
         
         return(
             <div className='AdminHome'>
-                {clientList}
+                {leadList}
             </div>
         );
     };

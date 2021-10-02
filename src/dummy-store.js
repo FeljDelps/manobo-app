@@ -1,5 +1,5 @@
 export const dummyStore = {
-    "clients": [
+    "leads": [
         {
             "id": "1",
             "name": "Bruce Wayne",

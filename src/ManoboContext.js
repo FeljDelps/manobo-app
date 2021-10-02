@@ -2,8 +2,8 @@ import React from 'react';
 
 
 const ManoboContext = React.createContext({
-   clients:[],
-   addClient: () => {} 
+   leads:[],
+   addLead: () => {} 
 });
 
 export default ManoboContext;

@@ -12,7 +12,7 @@ class SignupForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: {
+            lead_name: {
                 value: '',
                 touched: false
             },
@@ -50,11 +50,11 @@ class SignupForm extends React.Component {
         }
     }
     
-    validateName() {
-        const name = this.state.name.value.trim();
-        if (name.length === 0) {
+    validateLeadName() {
+        const leadName = this.state.lead_name.value.trim();
+        if (leadName.length === 0) {
             return 'Name is required';
-        } else if (name.length < 3) {
+        } else if (leadName.length < 3) {
             return 'Name must be at least 3 characters long'
         }
     }
@@ -71,8 +71,8 @@ class SignupForm extends React.Component {
         this.setState({phone: {value: phone, touched: true}});
     }
     
-    updateName(name) {
-        this.setState({name: {value: name, touched: true}});
+    updateLeadName(lead_name) {
+        this.setState({lead_name: {value: lead_name, touched: true}});
     }
 
     
@@ -80,14 +80,14 @@ class SignupForm extends React.Component {
         event.preventDefault();
 
         const newUser = {
-            name: this.state.name.value,
+            lead_name: this.state.lead_name.value,
             phone: this.state.phone.value,
             email: this.state.email.value,
             comment: this.state.comment.value
         }
 
         this.setState({
-            name: {value: '', touched: false},
+            lead_name: {value: '', touched: false},
             phone: {value: '', touched: false},
             email: {value: '', touched: false},
             comment: {value: '', touched: false}
@@ -110,8 +110,8 @@ class SignupForm extends React.Component {
                 <div className='SignupForm__registration-hint'>* required field</div>
                 <div className='SignupForm__form-group'>
                     <label htmlFor='name'>Name *</label>
-                    <input type='text' className='SignupForm__control' name='name' id='name' onChange={e => this.updateName(e.target.value)}/>
-                    {this.state.name.touched && (<ValidationError message={this.validateName()}/>)}
+                    <input type='text' className='SignupForm__control' name='name' id='name' onChange={e => this.updateLeadName(e.target.value)}/>
+                    {this.state.lead_name.touched && (<ValidationError message={this.validateLeadName()}/>)}
                 </div>
                 <div className='SignupForm__form-group'>
                     <label htmlFor='phone'>Phone number *</label>
@@ -138,7 +138,7 @@ class SignupForm extends React.Component {
                         type='submit' 
                         className='SignupForm__registration-button'
                         disabled ={
-                            this.validateName () ||
+                            this.validateLeadName () ||
                             this.validatePhone() ||
                             this.validateEmail()
                         }>

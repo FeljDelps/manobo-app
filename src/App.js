@@ -1,4 +1,5 @@
 import React from 'react';
+import config from './config';
 import { Route, Link } from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage';
 import HomePage from './HomePage/HomePage';
@@ -7,7 +8,6 @@ import SignupForm from './SignupForm/SignupForm';
 import AdminLogin from './AdminLogin/AdminLogin';
 import AdminHome from './AdminHome/AdminHome';
 import ManoboContext from './ManoboContext';
-import { dummyStore } from './dummy-store';
 
 
 class App extends React.Component {
@@ -18,10 +18,28 @@ class App extends React.Component {
     }
   }
   
+  setLeads = leads => {
+    this.setState({
+      leads,
+      error: null
+    })
+  }
   
   componentDidMount() {
-    //Fake API call 
-    setTimeout(() => this.setState(dummyStore))
+    fetch(`${config.API_ENDPOINT}/api/leads`, {
+      method:'GET',
+      headers: {
+        'content-type':'application/json'
+      }
+    })
+      .then(res => {
+        if(!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then(this.setLeads)
+      .catch(error => this.setState({ error }))
   }
 
   addLead = lead => {

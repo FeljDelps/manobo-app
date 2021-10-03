@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../config';
 import ValidationError from '../ValidationError';
 import ManoboContext from '../ManoboContext';
 
@@ -27,7 +28,8 @@ class SignupForm extends React.Component {
             comment: {
                 value: '',
                 touched: false
-            }
+            },
+            error: null
         }
     } 
     
@@ -79,25 +81,48 @@ class SignupForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
+        const { lead_name, email, phone, comment } = event.target
+
         const newUser = {
-            lead_name: this.state.lead_name.value,
-            phone: this.state.phone.value,
-            email: this.state.email.value,
-            comment: this.state.comment.value
-        }
-
+            lead_name: lead_name.value,
+            email: email.value,
+            phone: phone.value,
+            comment: comment.value
+        };
+        
         this.setState({
-            lead_name: {value: '', touched: false},
-            phone: {value: '', touched: false},
-            email: {value: '', touched: false},
-            comment: {value: '', touched: false}
+            error: null
+        });
+
+        fetch(`${config.API_ENDPOINT}/api/leads`, {
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers: {
+                'content-type':'application/json',
+            }
         })
-        this.context.addLead(newUser);
-        this.props.history.push('/admin-home')
-
-
-        console.log(newUser);
-
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(data => {
+                this.setState({
+                    lead_name: {value: '', touched: false},
+                    phone: {value: '', touched: false},
+                    email: {value: '', touched: false},
+                    comment: {value: '', touched: false}
+                });
+                this.context.addLead(data);
+                this.props.history.push('/admin-home');
+                console.log(data)
+            })
+            .catch(error => {
+                this.setState({ error })
+            })
     }
     
     render() {
@@ -109,8 +134,8 @@ class SignupForm extends React.Component {
                 </div>
                 <div className='SignupForm__registration-hint'>* required field</div>
                 <div className='SignupForm__form-group'>
-                    <label htmlFor='name'>Name *</label>
-                    <input type='text' className='SignupForm__control' name='name' id='name' onChange={e => this.updateLeadName(e.target.value)}/>
+                    <label htmlFor='lead_name'>Name *</label>
+                    <input type='text' className='SignupForm__control' name='lead_name' id='lead_name' onChange={e => this.updateLeadName(e.target.value)}/>
                     {this.state.lead_name.touched && (<ValidationError message={this.validateLeadName()}/>)}
                 </div>
                 <div className='SignupForm__form-group'>

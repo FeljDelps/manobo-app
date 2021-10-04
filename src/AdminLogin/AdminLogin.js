@@ -7,15 +7,15 @@ class AdminLogin extends React.Component {
         super(props);
 
         this.state = {
-            adminName: {
+            admin_name: {
                 value: '',
                 touched: false
             },
-            adminPassword: {
+            admin_password: {
                 value: '',
                 touched: false
             },
-            repeatAdminPassword: {
+            repeat_admin_password: {
                 value: '',
                 touched: false
             }
@@ -24,48 +24,48 @@ class AdminLogin extends React.Component {
     
 
     validateRepeatAdminPassword() {
-        const repeatAdminPassword = this.state.repeatAdminPassword.value.trim();
-        const adminPassword = this.state.adminPassword.value.trim();
+        const repeat_admin_password = this.state.repeat_admin_password.value.trim();
+        const admin_password = this.state.admin_password.value.trim();
 
-        if(repeatAdminPassword !== adminPassword) {
+        if(repeat_admin_password !== admin_password) {
             return 'Passwords must match'
         }
     }
     
     validateAdminPassword() {
-        const adminPassword = this.state.adminPassword.value.trim();
+        const admin_password = this.state.admin_password.value.trim();
 
-        if(adminPassword.length === 0) {
+        if(admin_password.length === 0) {
             return 'Administrator password is required'
         }
     }
     
     validateAdminName() {
-        const adminName = this.state.adminName.value.trim();
-        if(adminName.length === 0) {
+        const admin_name = this.state.admin_name.value.trim();
+        if(admin_name.length === 0) {
             return 'Administrator name is required'
         }
     }
 
-    updateRepeatAdminPassword(repeatAdminPassword) {
-        this.setState({repeatAdminPassword: {value: repeatAdminPassword, touched: true}})
+    updateRepeatAdminPassword(repeat_admin_password) {
+        this.setState({repeat_admin_password: {value: repeat_admin_password, touched: true}})
     }
 
-    updateAdminPassword(adminPassword) {
-        this.setState({adminPassword: {value: adminPassword, touched: true}})
+    updateAdminPassword(admin_password) {
+        this.setState({admin_password: {value: admin_password, touched: true}})
     }
     
-    updateAdminName(adminName) {
-        this.setState({adminName: {value: adminName, touched: true}})
+    updateAdminName(admin_name) {
+        this.setState({admin_name: {value: admin_name, touched: true}})
     }
 
     handleSubmit(event) {
         event.preventDefault()
         
         const admin = {
-            name: this.state.adminName.value,
-            password: this.state.adminPassword.value,
-            repeatPassword: this.state.repeatAdminPassword.value
+            admin_name: this.state.admin_name.value,
+            admin_password: this.state.admin_password.value,
+            repeat_admin_password: this.state.repeat_admin_password.value
         }
 
         this.props.history.push('/admin-home')
@@ -83,18 +83,18 @@ class AdminLogin extends React.Component {
                 <div className='AdminLogin__registration-hint'>* required field</div>
                 <div className='AdminLogin__form-group'>
                     <label htmlFor='adminName'>Name *</label>
-                    <input type='text' className='AdminLogin__control' name='adminName' id='adminName' onChange={e => this.updateAdminName(e.target.value)}/>
-                    {this.state.adminName.touched && (<ValidationError message={this.validateAdminName()}/>)}
+                    <input type='text' className='AdminLogin__control' name='admin_name' id='admin_Name' onChange={e => this.updateAdminName(e.target.value)}/>
+                    {this.state.admin_name.touched && (<ValidationError message={this.validateAdminName()}/>)}
                 </div>
                 <div className='AdminLogin__form-group'>
                     <label htmlFor='adminPassword'>Password *</label>
-                    <input type='password' className='AdminLogin__control' name='adminPassword' id='adminPassword' onChange={e => this.updateAdminPassword(e.target.value)}/>
-                    {this.state.adminPassword.touched && (<ValidationError message={this.validateAdminPassword()}/>)}
+                    <input type='password' className='AdminLogin__control' name='admin_password' id='admin_password' onChange={e => this.updateAdminPassword(e.target.value)}/>
+                    {this.state.admin_password.touched && (<ValidationError message={this.validateAdminPassword()}/>)}
                 </div>
                 <div className='AdminLogin__form-group'>
                     <label htmlFor='repeatAdminPassword'>Repeat  password *</label>
-                    <input type='password' className='AdminLogin__control' name='repeatAdminPassword' id='repeatAdminPassword' onChange={e => this.updateRepeatAdminPassword(e.target.value)}/>
-                    {this.state.repeatAdminPassword.touched && (<ValidationError message={this.validateRepeatAdminPassword()}/>)}
+                    <input type='password' className='AdminLogin__control' name='repeat_admin_password' id='repeat_admin_password' onChange={e => this.updateRepeatAdminPassword(e.target.value)}/>
+                    {this.state.repeat_admin_password.touched && (<ValidationError message={this.validateRepeatAdminPassword()}/>)}
                 </div>
                 <div className='AdminLogin__button-group'>
                     <button type='reset' className='AdminLogin__login-button'>

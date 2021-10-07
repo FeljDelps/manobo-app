@@ -59,6 +59,15 @@ class AdminLogin extends React.Component {
         this.setState({admin_name: {value: admin_name, touched: true}})
     }
 
+    handleSubmitBasicAuth(event) {
+        event.preventDefault();
+
+        const admin_name = this.state.admin_name.value;
+        const admin_password = this.state.admin_password.value;
+
+
+    }
+    
     handleSubmit(event) {
         event.preventDefault()
         
@@ -76,7 +85,7 @@ class AdminLogin extends React.Component {
     
     render() {
         return (
-            <form className='AdminLogin' onSubmit={e => this.handleSubmit(e)}>
+            <form className='AdminLogin' onSubmit={e => this.handleSubmitBasicAuth(e)}>
                 <div className='AdminLogin__signup desc'>
                     <h2>Log in to your account</h2>
                 </div>
